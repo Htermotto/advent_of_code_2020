@@ -10,10 +10,7 @@ def exists_sum(dq, r):
     return False
 
 # ----------- PART 1 -------------
-dq = deque()
-for i in range(25):
-    dq.append(lines[i])
-
+dq = deque(lines[:25])
 for num in lines[25:]:
     if not exists_sum(dq, num):
         print(num)
@@ -32,5 +29,6 @@ for s_indx in range(0, len(lines)):
     for e_indx in range(s_indx+1, len(lines)+1):
         if sum(lines[s_indx:e_indx]) == INVALID:
             print(min(lines[s_indx:e_indx]) + max(lines[s_indx:e_indx]))
+            break
         elif sum(lines[s_indx:e_indx]) > INVALID:
             break

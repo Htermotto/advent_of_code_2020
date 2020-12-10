@@ -21,11 +21,11 @@ while curr_volt <= max_num:
 print(one_diff * three_diff)
 
 # --------- PART 2 -----------
-# O(N), DP, ways[i] = ways[i+1] + ways[i+2] + ways[i+3]
+# O(nlogn), DP == O(n), ways[i] = ways[i+1] + ways[i+2] + ways[i+3]
 
 nums.add(max(nums) + 3)
 nums.add(0)
-nums = list(sorted(nums))
+nums = list(sorted(nums)) # O(nlogn)
 ways = [0] * (len(nums))
 ways[-1] = 1
 

@@ -1,5 +1,6 @@
 lines = [list(l.strip()) for l in open('input.txt', 'r')]
 
+
 def num_occupied(matrix, r, c):
     num_occupied = 0
     for i in range(-1,2):
@@ -17,10 +18,9 @@ def num_occupied_2(matrix, r, c):
     num_occupied = 0
     moves = [(1,0), (0,1), (-1,0), (0,-1), (1,1), (-1,-1), (1,-1), (-1,1)]
     for move in moves:
-        not_found = True
         rnew = r
         cnew = c
-        while not_found:
+        while True:
             rnew += move[0]
             cnew += move[1]
             if rnew < 0 or cnew < 0 or rnew >= len(matrix) or cnew >= len(matrix[0]):
@@ -46,16 +46,14 @@ def turn(matrix):
             elif matrix[r][c] == '#' and num_occupied_2(matrix, r, c) >= 5:
                 new_matrix[r][c] = 'L'
                 made_change = True
-            else:
-                new_matrix[r][c] = matrix[r][c]
     return new_matrix, made_change
 
 
 new_matrix = lines
 while True:
-    c = 0
     new_matrix, made_change = turn(new_matrix)
     if not made_change:
+        c = 0
         for i in range(len(new_matrix)):
             for j in range(len(new_matrix[0])):
                 if new_matrix[i][j] == '#':

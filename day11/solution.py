@@ -41,8 +41,6 @@ def turn(matrix):
             if matrix[r][c] == 'L' and num_occupied_2(matrix, r, c) == 0:
                 new_matrix[r][c] = '#'
                 made_change = True
-            elif matrix[r][c] == '.':
-                new_matrix[r][c] = '.'
             elif matrix[r][c] == '#' and num_occupied_2(matrix, r, c) >= 5:
                 new_matrix[r][c] = 'L'
                 made_change = True

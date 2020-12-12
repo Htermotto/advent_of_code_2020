@@ -41,6 +41,7 @@ for move in lines:
         position = (position[0] + (amt * waypoint[0]), position[1] + (amt * waypoint[1]))
         continue
 
+    # position = (position[0] + (amt * curr_dir[0]), position[1] + (amt * curr_dir[1]))
     waypoint = (waypoint[0] + (amt * curr_dir[0]), waypoint[1] + (amt * curr_dir[1]))
 
     print(position)

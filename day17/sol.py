@@ -4,13 +4,18 @@ from copy import deepcopy
 lines = [l.strip() for l in open('input.txt', 'r')]
 
 
+L = 20
+W = 20
+D = 13
+H = 13
+
 # 20X20X13X13 grid
 hypergrid = []
 
 # Create starting "hypergrid" record
 grid = []
 r = 6
-blank = [['.'] * 20 for _ in range(20)]
+blank = [['.'] * W for _ in range(L)]
 for i in range(len(lines)):
     l = lines[i]
     c = 6
@@ -21,24 +26,24 @@ for i in range(len(lines)):
 grid.append(blank)
 
 for i in range(6):
-    grid.append([['.'] * 20 for _ in range(20)])
+    grid.append([['.'] * W for _ in range(L)])
 
 for i in range(6):
-    grid.insert(0, [['.'] * 20 for _ in range(20)])
+    grid.insert(0, [['.'] * W for _ in range(L)])
 
 hypergrid.append(grid)
 
 # Create empty "hypergrid" records
 for i in range(6):
     grid = []
-    for i in range(13):
-        grid.append([['.'] * 20 for _ in range(20)])
+    for i in range(D):
+        grid.append([['.'] * W for _ in range(L)])
     hypergrid.append(grid)
 
 for i in range(6):
     grid = []
-    for i in range(13):
-        grid.append([['.'] * 20 for _ in range(20)])
+    for i in range(D):
+        grid.append([['.'] * W for _ in range(L)])
     hypergrid.insert(0, grid)
 
 
@@ -52,7 +57,7 @@ def get_neighbors(grid, x, y, z, w):
                     if wd == xd == yd == zd == 0:
                         continue
 
-                    if x+xd < 0 or x+xd >=20 or y+yd < 0 or y+yd>=20 or z+zd <0 or z+zd >= 13 or w+wd < 0 or w+wd>=13:
+                    if x+xd < 0 or x+xd >= L or y+yd < 0 or y+yd>= W or z+zd <0 or z+zd >= D or w+wd < 0 or w+wd >= H:
                         continue
 
                     if grid[w+wd][z+zd][x+xd][y+yd] == '.':
@@ -64,10 +69,10 @@ def get_neighbors(grid, x, y, z, w):
 for i in range(6):
     next_grid = deepcopy(hypergrid)
     num_active = 0
-    for w in range(13):
-        for z in range(13):
-            for x in range(20):
-                for y in range(20):
+    for w in range(H):
+        for z in range(D):
+            for x in range(L):
+                for y in range(W):
                     active, inactive = get_neighbors(hypergrid, x, y, z, w)
                     if hypergrid[w][z][x][y] == '#':
                         if active == 2 or active == 3:
